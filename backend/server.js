@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', (req, res) => {
-  res.send('Welcome to the Venwave SaaS backend!');
+  res.send('Welcome to the Venwave');
 });
 
 // Start server
