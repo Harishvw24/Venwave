@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 const User = require('./models/userModel');
 const app = express();
 connectDB();
+const cors = require('cors');
+app.use(cors());
+const productRoutes = require('./routes/ProductRoutes.js');
 const PORT = process.env.PORT || 5005;
 
 // Middleware
@@ -12,9 +15,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
+app.use('/api/products', productRoutes);
 app.get('/', (req, res) => {
   res.send('Welcome to the Venwave');
 });
+
+//Forget Password Route
+app.use('/api/users/forget-password', require('./routes/ForgetPasswordRoute'));
 
 // Register the user
 app.post('/api/users/register', async (req, res) => {
